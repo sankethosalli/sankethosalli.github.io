@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CountDown |(Or) Relieving Note</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <style>
+      #count {
+        font-size: 80px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <br />
+    <center>
+      <div id="count"></div>
+      <div id="message"></div>
+    </center>
+  </body>
+  <script>
+    const _MS_PER_DAY = 1000 * 60 * 60 * 24;
+
+    function dateDiffInDays(a, b) {
+      const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+      const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+
+      return Math.floor((utc2 - utc1) / _MS_PER_DAY);
+    }
+
+    const startDate = new Date("2022-03-12"); // Not Used, but just kept.
+    const endDate = new Date("2022-05-12");
+    const today = new Date();
+
+    const messageBefore = "To go, Hold On";
+    const messageAfter = "Wuff!!!, That was tough, But Well Done.";
+
+    let parity = 1;
+
+    let countStream = "";
+    let count = 0;
+    count = dateDiffInDays(today, endDate);
+
+    let message = "";
+
+    if (count > 0) {
+      parity = 1;
+    } else {
+      parity = -1;
+      count = Maths.abs(count);
+    }
+
+    if (parity === 1) {
+      countStream = count.toString() + " Days";
+      message = messageBefore;
+    } else {
+      countStream = count.toString() + " Days Passed";
+      message = messageAfter;
+    }
+
+    $("#count").text(countStream);
+    $("#message").text(message);
+  </script>
+</html>
