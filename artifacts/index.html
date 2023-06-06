@@ -5,11 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Artifacts | Sayings</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   </head>
   <body>
     <div>
       <a href="https://www.sankethosalli.com/artifacts">^Private</a>
     </div>
+    
+    <!-- 1. Lessons -->
     <div>
       <h1># Lessons</h1>
       <img src="/artifacts/images/lessons/1.png" draggable="false" />
@@ -18,103 +21,14 @@
       <img src="/artifacts/images/lessons/4.png" draggable="false" />
     </div>
     <hr />
+
+    <!-- 2. Findings -->
     <div>
-      <h1># Findings</h1>
-
-      <div>
-        <h2>1.</h2>
-        <img
-          src="/artifacts/images/findings/1/1.png"
-          draggable="false"
-          width="560"
-        />
-        <img
-          src="/artifacts/images/findings/1/2.png"
-          draggable="false"
-          width="560"
-        />
-      </div>
-
-      <div>
-        <h2>2.</h2>
-        <img
-          src="/artifacts/images/findings/2/1.png"
-          draggable="false"
-          width="560"
-        />
-        <img
-          src="/artifacts/images/findings/2/2.png"
-          draggable="false"
-          width="560"
-        />
-      </div>
-
-      <div>
-        <h2>3.</h2>
-        <img
-          src="/artifacts/images/findings/3/1.png"
-          draggable="false"
-          width="560"
-        />
-        <img
-          src="/artifacts/images/findings/3/2.png"
-          draggable="false"
-          width="560"
-        />
-      </div>
-
-      <div>
-        <h2>4.</h2>
-        <img
-          src="/artifacts/images/findings/4/1.png"
-          draggable="false"
-          width="560"
-        />
-      </div>
-
-      <div>
-        <h2>5.</h2>
-        <img
-          src="/artifacts/images/findings/5/1.png"
-          draggable="false"
-          width="560"
-        />
-        <img
-          src="/artifacts/images/findings/5/2.png"
-          draggable="false"
-          width="560"
-        />
-      </div>
-
-      <div>
-        <h2>6.</h2>
-        <img
-          src="/artifacts/images/findings/6/1.png"
-          draggable="false"
-          width="560"
-        />
-      </div>
-
-      <div>
-        <h2>7.</h2>
-        <img
-          src="/artifacts/images/findings/7/1.png"
-          draggable="false"
-          width="560"
-        />
-        <img
-          src="/artifacts/images/findings/7/2.png"
-          draggable="false"
-          width="560"
-        />
-        <img
-          src="/artifacts/images/findings/7/3.png"
-          draggable="false"
-          width="560"
-        />
-      </div>
+    <h1># Findings</h1>
+      <div id="findings"></div>
     </div>
 
+    <!-- z. brs -->
     <div>
       <br /><br /><br /><br />
       <br /><br /><br /><br />
@@ -127,5 +41,41 @@
       <br /><br /><br /><br />
       <br /><br /><br /><br />
     </div>
+
   </body>
+  <script>
+    const ImgTag = (parentId, childId, type = "png") => {
+      return `<img
+          src="/artifacts/images/findings/${parentId}/${childId}.${type}"
+          draggable="false"
+          width="560"
+        />`;
+    };
+
+    const DivTag = (parentId, childrenCount) => {
+      return `
+      <div>
+        <h2>${parentId}.</h2>
+        <div>
+        ${Array.from({ length: childrenCount }, (_, i) => i + 1)
+          .map((childId) => ImgTag(parentId, childId))
+          .join("")}
+        </div>
+      </div>
+      `;
+    };
+
+    const Wrapper = (fnds) => {
+      return fnds
+        .map((childrenCount, idx) => DivTag(idx + 1, childrenCount))
+        .join("");
+    };
+
+    const findings = [
+      2, 2, 2, 1,
+      // 4
+      2, 1, 3, 7,
+    ];
+    $("#findings").html(Wrapper(findings));
+  </script>
 </html>
