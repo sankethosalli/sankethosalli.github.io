@@ -6,16 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Artifacts | Sayings</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-  <script>
-    const host = window.location.href.include("https://") ? 'https://www.sankethosalli.com' : 'http://localhost:3000';
-    $('#findings-continuing-link').href(`${host}/artifacts`);
-  </script>
   </head>
   <body>
     <div>
       <a href="https://www.sankethosalli.com/artifacts">^Private</a>
     </div>
-    
+
     <!-- 1. Lessons -->
     <div>
       <h1># Lessons</h1>
@@ -28,12 +24,15 @@
 
     <!-- 2. Findings -->
     <div>
-    <h1># Findings</h1>
+      <h1># Findings</h1>
       <div id="findings"></div>
     </div>
 
     <br /><br /><br /><br />
-    <div>Deprecated. Continuing on <a href="" id="findings-continuing-link">Here</a></div>
+    <div>
+      Deprecated. Continuing on
+      <a href="" id="findings-continuing-link">Here</a>
+    </div>
 
     <!-- z. brs -->
     <div>
@@ -48,7 +47,6 @@
       <br /><br /><br /><br />
       <br /><br /><br /><br />
     </div>
-
   </body>
   <script>
     const ImgTag = (parentId, childId, type = "png") => {
@@ -87,8 +85,14 @@
       // 4
       2, 1, 1, 4,
       // 4
-      5, 5, 0, 2
+      5, 5, 0, 2,
     ];
     $("#findings").html(Wrapper(findings));
+  </script>
+  <script>
+    const host = window.location.href.include("https://")
+      ? "https://www.sankethosalli.com"
+      : "http://localhost:3000";
+    $("#findings-continuing-link").href(`${host}/artifacts`);
   </script>
 </html>
