@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SBR Count - 2024</title>
+    <style>
+        body {
+            background-color: azure;
+        }
+
+        #startDateLabel {
+            text-decoration: none;
+        }
+
+        #startDateValue {
+            font-weight: 600;
+        }
+
+        #sbrCountValue {
+            font-family: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <div>
+            <div><span id="startDateLabel">Start Date:</span> <span id="startDateValue"></span></div>
+        </div>
+        <div><span id="currentDateLabel">Current Date:</span> <span id="currentDateValue"></span></div>
+        <br /><br /><br /><br />
+        <div><span id="sbrCountLabel">SBR Count(In Days):</span> <span id="sbrCountValue"></span></div>
+    </center>
+</body>
+<script>
+    // 2024-11-03: actually, this is the date.
+    const startDateValue = new Date("2024-11-04");
+    document.getElementById("startDateValue").innerHTML = startDateValue;
+    const currentDateValue = new Date();
+    document.getElementById("currentDateValue").innerHTML = currentDateValue;
+
+    const sbrCountValue = Math.round((currentDateValue.getTime() - startDateValue.getTime()) / (1000 * 3600 * 24));
+    document.getElementById("sbrCountValue").innerHTML = sbrCountValue;
+</script>
+
+</html>
